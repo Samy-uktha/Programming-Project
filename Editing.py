@@ -22,8 +22,11 @@ class ShoppingList:
         pineapple = tk.Button(master, text="Pineapple",height=10, width=20,bg="orange", command=lambda: self.add_item("Pineapple", 40)).grid(row=1, column=1)
         papaya = tk.Button(master, text="Papaya",height=10, width=20,bg="salmon", command=lambda: self.add_item("Papaya", 40)).grid(row=1, column=2)
         jackfruit = tk.Button(master, text="Jackfruit",height=10, width=20,bg="green", command=lambda: self.add_item("Jackfruit", 40)).grid(row=0, column=3)
-        Dragonfruit=tk.button(master,text="Dragon fruit",height=10,width=20,bg="white",command=lamda:self.add_item("Dragon fruit",50)).grid(row=0,column=4)
-
+        Dragonfruit=tk.button(master,text="Dragonfruit",height=10,width=20,bg="white",command=lambda:self.add_item("Dragonfruit",50)).grid(row=0,column=4)
+        Guava = tk.Button(master, text="Guava",height=10, width=20,bg="grey", command=lambda: self.add_item("Guava", 10)).grid(row=1, column=3)
+        Grapes = tk.Button(master, text="Grapes",height=10, width=20,bg="tan", command=lambda: self.add_item("Grapes", 60)).grid(row=1, column=4)
+        Pear = tk.Button(master, text="Pear",height=10, width=20,bg="teal", command=lambda: self.add_item("Pear", 30)).grid(row=2, column=2)
+        Pomagranate = tk.Button(master, text="Pomagranate",height=10,width=20,bg="purple", command=lambda: self.add_item("Pomagranate",60)).grid(row=2,column=3)
         self.item_prices = {
             apple: 10,
             banana: 10,
@@ -32,8 +35,12 @@ class ShoppingList:
             watermelon: 30,
             pineapple: 40,
             papaya: 30,
-            jackfruit: 50
+            jackfruit: 50,
             Dragonfruit:50
+            Guava:10,
+            Grapes:60,
+            Pear:30,
+            Pomagranate:60
         }
         self.shopping_cart = {}
 
