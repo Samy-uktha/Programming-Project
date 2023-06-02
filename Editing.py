@@ -9,34 +9,40 @@ class ShoppingGUI:
         self.master = master
         self.master.title("Shopping Program")
 
-        #self.bg_image = tk.PhotoImage(file="supermarket.png")
-        #self.bg_label = tk.Label(self.master, image=self.bg_image)
-        #self.bg_label.place(x=0,y=0, relwidth=1, relheight=1)
+
+        self.bg_image = tk.PhotoImage(file="supermarket.png")
+        self.bg_label = tk.Label(self.master, image=self.bg_image)
+        self.bg_label.place(x=0,y=0, relwidth=1, relheight=1)
+    
+
 
         self.login_page()
 
     def login_page(self):
-        self.username_label = tk.Label(self.master, text="Username:", font="Arial 20", background="salmon")
-        self.username_label.place(x=600,y=100)
+        self.username_label = tk.Label(self.master, text="Username:", font="Algerian 20", background="#98EECC")
+        self.username_label.place(x=700,y=100)
 
-        self.username_entry = tk.Entry(self.master, font="Arial 20", background="pink")
-        self.username_entry.place(x=530,y=150)
+        self.username_entry = tk.Entry(self.master, font="Arial 20", background="#FBFFDC")
+        self.username_entry.place(x=630,y=150)
 
-        self.password_label = tk.Label(self.master, text="Password:",font="ALGERIAN", background="salmon")
-        self.password_label.place(x=600,y=250)
 
-        self.password_entry = tk.Entry(self.master, show="*",font="Arial 20",background="pink")
-        self.password_entry.place(x=530,y=300)
+        self.password_label = tk.Label(self.master, text="Password:",font="Algerian 20", background="#98EECC")
+        self.password_label.place(x=700,y=250)
 
-        self.login_button = tk.Button(self.master, text="Login",font="Arial 20",background="light green" ,activebackground="green", command=self.login)
-        self.login_button.place(x=640,y=400)
+
+
+        self.password_entry = tk.Entry(self.master, show="*",font="Arial 20",background="#FBFFDC")
+        self.password_entry.place(x=630,y=300)
+
+        self.login_button = tk.Button(self.master, text="Login",font="Algerian 20",background="#79E0EE" ,activebackground="#D0F5BE", command=self.login)
+        self.login_button.place(x=720,y=400)
 
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
 
         # Validate the username and password
-        if username == "admin" and password == "password":
+        if username == "Admin" and password == "project":
             self.show_sections()
         else:
             messagebox.showerror("Login Failed", "Invalid username or password")
@@ -81,13 +87,24 @@ class ShoppingGUI:
                 ]},
 
                 {"name": "Dairy", "items": [
-                    {"name": "Egg", "price": 2.50},
-                    {"name": "Milk", "price": 2.00},
-                    {"name": "Cheese", "price": 0.50},
+                     {"name": "butter", "price": 2.50},
+                     {"name": "Milk", "price": 2.00},
+                     {"name": "Cheese", "price": 0.50},
+
+                     {"name": "gelato", "price": 2.00},
+                     {"name": "Curd", "price": 0.50},
+                     {"name": "sourcream", "price": 2.00}
+                    
+=======
+
                 ]},
 
                 {"name": "Bakery", "items": [
                     {"name": "Bread", "price": 2.50},
+
+                    {"name": "garlicbread", "price": 2.00},
+                    {"name": "pudding", "price": 0.50},
+                    {"name": "custard", "price": 2.50}
                     {"name": "Milk", "price": 2.00},
                     {"name": "Cookies", "price": 0.50}
                     {"name": "Biscuit", "price": 2.00},
@@ -98,6 +115,7 @@ class ShoppingGUI:
                     {"name": "Swissroll", "price": 1.00},
                     {"name": "Pie", "price": 2.00},
                    
+
                 ]}
             ]},
             {"name": "Beverages", "subsections": [
@@ -105,12 +123,23 @@ class ShoppingGUI:
                 {"name": "Natural", "items": [
                     {"name": "Spinach", "price": 1.50},
                     {"name": "Lettuce", "price": 1.00},
-                    {"name": "Kale", "price": 2.00}
+                    {"name": "Kale", "price": 2.00},
+                    {"name": "Papaya", "price": 2.00},
+                    {"name": "Apple", "price": 2.00},
+                    {"name": "orange", "price": 2.00},
+                    {"name": "Banana", "price": 2.00}
                 ]},
                 {"name": "Artificial", "items": [
-                    {"name": "Carrot", "price": 1.00},
-                    {"name": "Potato", "price": 0.75},
-                    {"name": "Beetroot", "price": 1.50}
+                    {"name": "7up", "price": 5.00},
+                    {"name": "coke", "price": 4.75},
+                    {"name": "Thumbsup", "price":3.50},
+                    {"name": "chocoshake", "price": 2.00},
+                    {"name": "milka", "price": 2.00},
+                    {"name": "pepsi", "price": 2.00},
+                    {"name": "bovonto", "price": 2.00},
+                    {"name": "sprite", "price": 2.00},
+                    {"name": "pulpy_orange", "price": 2.00}
+                    
                 ]}
             ]}
         ]
