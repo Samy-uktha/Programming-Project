@@ -1,85 +1,277 @@
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import ttk
-#import tabulate
-#from tabulate import tabulate
+from tkinter import *
 
-class ShoppingList:
+
+class ShoppingGUI:
     def __init__(self, master):
         self.master = master
-        master.title("Shopping List")
+        self.master.title("Shopping Program")
 
-        # Create variables to store item names and prices
-        #self.items = []
-        self.prices = []
+        self.bg_image = tk.PhotoImage(file="supermarket.png")
+        self.bg_label = tk.Label(self.master, image=self.bg_image)
+        self.bg_label.place(x=0,y=0, relwidth=1, relheight=1)
+
+        self.login_page()
+
+    def login_page(self):
+        self.username_label = tk.Label(self.master, text="Username:", font="Arial 20", background="salmon")
+        self.username_label.place(x=600,y=100)
+
+        self.username_entry = tk.Entry(self.master, font="Arial 20", background="pink")
+        self.username_entry.place(x=530,y=150)
+
+        self.password_label = tk.Label(self.master, text="Password:",font="Arial 20", background="salmon")
+        self.password_label.place(x=600,y=250)
+
+        self.password_entry = tk.Entry(self.master, show="*",font="Arial 20",background="pink")
+        self.password_entry.place(x=530,y=300)
+
+        self.login_button = tk.Button(self.master, text="Login",font="Arial 20",background="light green" ,activebackground="green", command=self.login)
+        self.login_button.place(x=640,y=400)
+
+    def login(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        # Validate the username and password
+        if username == "admin" and password == "password":
+            self.show_sections()
+        else:
+            messagebox.showerror("Login Failed", "Invalid username or password")
+
+    def show_sections(self):
+
+        self.username_label.destroy()
+        self.username_entry.destroy()
+        self.password_label.destroy()
+        self.password_entry.destroy()
+        self.login_button.destroy()
+
+        self.sections = [
+            {"name": "Groceries", "subsections": [
+
+                {"name": "Fruits", "items": [
+                    {"name": "Orange", "price": 1.50},
+                    {"name": "Lemon", "price": 1.00},
+                    {"name": "Grapefruit", "price": 2.00}
+                ]},
+
+                {"name": "Vegetables", "items": [
+                    {"name": "Mango", "price": 2.50},
+                    {"name": "Pineapple", "price": 2.00},
+                    {"name": "Banana", "price": 0.50}
+                ]},
+
+                {"name": "Dairy", "items": [
+                    {"name": "Egg", "price": 2.50},
+                    {"name": "Milk", "price": 2.00},
+                    {"name": "Cheese", "price": 0.50}
+                ]},
+
+                {"name": "Bakery", "items": [
+                    {"name": "Bread", "price": 2.50},
+                    {"name": "Milk", "price": 2.00},
+                    {"name": "Cheese", "price": 0.50}
+                ]}
+            ]},
+            {"name": "Beverages", "subsections": [
+
+                {"name": "Natural", "items": [
+                    {"name": "Spinach", "price": 1.50},
+                    {"name": "Lettuce", "price": 1.00},
+                    {"name": "Kale", "price": 2.00}
+                ]},
+                {"name": "Artificial", "items": [
+                    {"name": "Carrot", "price": 1.00},
+                    {"name": "Potato", "price": 0.75},
+                    {"name": "Beetroot", "price": 1.50}
+                ]}
+            ]}
+        ]
+
+        self.shopping_cart = []
+
+        self.create_sections()
+
+    def create_sections(self):
+        for section in self.sections:
+            section_button = tk.Button(self.master, text=section["name"],command=lambda section = section: self.open_subsection_window(section))
+            section_button.pack(pady=10)
+        logout_button = tk.Button(self.master, text="Logout",command= lambda:self.login_page)
+        logout_button.pack(side="bottom", pady=20)
+
+    def open_subsection_window(self, section):
+        subsection_window = tk.Toplevel(self.master)
+        subsection_window.title(section["name"])
+        subsection_window.geometry("1920x1080")
+
+        subsection_label = tk.Label(subsection_window, text=section["name"], font=("Helvetica", 16))
+        subsection_label.pack(pady=10)
+
+        for subsection in section["subsections"]:
+            subsection_button = tk.Button(subsection_window, text=subsection["name"], command=lambda subsection=subsection: self.open_item_window(subsection))
+            subsection_button.pack(pady=5)
+
+        back_button = tk.Button(subsection_window, text="Back", command=lambda:[subsection_window.destroy()])
+        back_button.pack(side="bottom", pady = 20)
 
 
-        # Create buttons for the items
-        apple = tk.Button(master, text="Apple", height=10, width=20,bg="red",command=lambda: self.add_item("Apple", 20)).grid(row=0, column=0, padx=10)
-        banana = tk.Button(master, text="Banana", height=10, width=20,bg="yellow" ,command=lambda: self.add_item("Banana", 30)).grid(row=0, column=1)
-        orange = tk.Button(master, text="Orange",height=10, width=20,bg="orange", command=lambda: self.add_item("Orange", 40)).grid(row=0, column=2, padx=10)
-        mango = tk.Button(master, text="Mango",height=10, width=20,bg="yellow", command=lambda: self.add_item("Mango", 40)).grid(row=0, column=3)
-        watermelon = tk.Button(master, text="Watermelon",height=10, width=20,bg="pink", command=lambda: self.add_item("Watermelon", 40)).grid(row=1, column=0)
-        pineapple = tk.Button(master, text="Pineapple",height=10, width=20,bg="orange", command=lambda: self.add_item("Pineapple", 40)).grid(row=1, column=1)
-        papaya = tk.Button(master, text="Papaya",height=10, width=20,bg="salmon", command=lambda: self.add_item("Papaya", 40)).grid(row=1, column=2)
-        jackfruit = tk.Button(master, text="Jackfruit",height=10, width=20,bg="green", command=lambda: self.add_item("Jackfruit", 40)).grid(row=0, column=3)
+    def open_item_window(self, subsection):
+        item_window = tk.Toplevel(self.master)
+        item_window.title(subsection["name"])
+        item_window.geometry("1920x1080")
 
-        self.item_prices = {
-            apple: 10,
-            banana: 10,
-            orange: 20,
-            mango: 30,
-            watermelon: 30,
-            pineapple: 40,
-            papaya: 30,
-            jackfruit: 50
-        }
-        self.shopping_cart = {}
+        item_label = tk.Label(item_window, text=subsection["name"], font=("Helvetica", 16))
+        item_label.pack(pady=10)
+
+        for item in subsection["items"]:
+
+            item_frame = tk.Frame(item_window)
+            item_frame.pack(pady=2)
+
+            item_button = tk.Button(item_frame, text=item["name"], command=lambda item=item: self.add_to_cart(item))
+            item_button.pack(pady=5)
+
+            quantity_label = tk.Label(item_frame, text= "Quantity: 0")
+            quantity_label.pack(side=tk.LEFT, padx=10)
+            item["quantity_label"] = quantity_label
 
 
-        # Create labels for item name, price and total price
-        #tk.Label(master, text="Item:").grid(row=0, column=1)
-        #tk.Label(master, text="Price:").grid(row=0, column=2)
-        tk.Label(master, text="Total Price:").grid(row=3, column=0)
+            remove_button = tk.Button(item_frame, text="Remove", command=lambda item=item: self.remove_from_cart(item))
+            remove_button.pack(side=tk.LEFT)
 
-        # Create a label to display the total price
-        self.total_price_label = tk.Label(master, text="0")
-        self.total_price_label.grid(row=3, column=1)
 
-        # Create a button to display the bill
-        tk.Button(master,text="Generate Bill", command=self.generate_bill).grid(row=4, column=0, columnspan=3)
+        generate_bill_button = tk.Button(item_window, text="Generate Bill", command=lambda: self.open_bill_window())
+        generate_bill_button.pack(pady=10)
+
+        back_button = tk.Button(item_window, text="Back", command= lambda: [item_window.destroy(),self.open_subsection_window])
+        back_button.pack(side="bottom", pady = 20)
 
     def add_to_cart(self, item):
-        if item in self.cart:
-            self.cart[item] += 1
+        name = item["name"]
+        price = item["price"]
+
+        for row in self.shopping_cart:
+            if row["name"] == name:
+                row["quantity"] += 1
+                break
         else:
-            self.cart[item] = 1
+            self.shopping_cart.append({"name": name, "quantity": 1, "price": price})
+
+        for row in self.shopping_cart:
+            item["quantity_label"].config(text=f"Quantity: {row['quantity']}")
+
+
+    def remove_from_cart(self, item):
+
+        for row in self.shopping_cart:
+            if row["quantity"] >= 0:
+                row["quantity"] -= 1
+                item["quantity_label"].config(text=f"Quantity: {row['quantity']}")
+
+                if row["quantity"] == 0:
+                    self.shopping_cart.remove(row)
+
+            else:
+                messagebox.showinfo("Error", 'Item is not in cart')
+
+        '''if item in self.shopping_cart:
+            item["quantity"] -= 1
+            item["quantity_label"].config(text=f"Quantity: {item['quantity']}")
+            if item["quantity"] == 0:
+                self.shopping_cart.remove(item)'''
 
 
 
-    def generate_bill(self):
-        # Create a new window for the bill
+
+    def open_bill_window(self):
         bill_window = tk.Toplevel(self.master)
         bill_window.title("Bill")
-        bill_window.geometry("1000x500")
+        bill_window.geometry("1920x1080")
 
-        bill_table = ttk.Treeview(bill_window, columns=("item", "quantity", "price"), show="headings")
-        bill_table.heading("item", text="Item")
+        bill_label = tk.Label(bill_window, text="Bill", font=("Helvetica", 16))
+        bill_label.pack(pady=10)
+
+        bill_table = ttk.Treeview(bill_window, columns=("name", "price" , "quantity", "total price"), show="headings")
+        bill_table.heading("name", text="Item")
         bill_table.heading("quantity", text="Quantity")
         bill_table.heading("price", text="Price")
+        bill_table.heading("total price", text="Total Price")
         bill_table.pack()
 
-        total_cost = 0
+        for item in self.shopping_cart:
+            total_price = item["quantity"] * item["price"]
+            row = (item["name"], f"${item['price']}", item["quantity"], f"${total_price}")
+            bill_table.insert("", "end", values=row)
 
-        for i in range(len(self.items)):
-            price = self.prices[i]
-            item_row = (self.items[i], quantity, f"${price * quantity}")
-            bill_table.insert("", "end", values=item_row)
-            total_cost += price * quantity
+        total_cost = sum(item["price"] * item["quantity"] for item in self.shopping_cart)
+        total_label = tk.Label(bill_window, text=f"Total Cost: ${total_cost}", font=("Helvetica", 14))
+        total_label.pack(pady=10)
 
-        total_row = ("Total Cost:", "", f"${total_cost}")
+        self.payment_frame = tk.Frame(bill_window)
+        self.payment_frame.pack(pady=10)
 
-# Create the main window and run the program
+        tk.Label(self.payment_frame, text="Payment Details").grid(row=0, column=0, columnspan=2, pady=5)
+
+        tk.Label(self.payment_frame, text="Card Number:").grid(row=1, column=0, sticky=tk.E)
+        self.card_entry = tk.Entry(self.payment_frame)
+        self.card_entry.grid(row=1, column=1, padx=5)
+
+        tk.Label(self.payment_frame, text="Name on Card:").grid(row=2, column=0, sticky=tk.E)
+        self.name_entry = tk.Entry(self.payment_frame)
+        self.name_entry.grid(row=2, column=1, padx=5)
+
+        tk.Label(self.payment_frame, text="CVV:").grid(row=3, column=0, sticky=tk.E)
+        self.cvv_entry = tk.Entry(self.payment_frame)
+        self.cvv_entry.grid(row=3, column=1, padx=5)
+
+        self.checkout_button = tk.Button(bill_window, text="Checkout", command= lambda:self.checkout())
+        self.checkout_button.pack()
+
+        back_button = tk.Button(bill_window, text="Back", command= lambda:[bill_window.destroy(), self.open_item_window])
+        back_button.pack(side="bottom", pady=20)
+
+
+
+    def checkout(self):
+        card_number = self.card_entry.get()
+        name_on_card = self.name_entry.get()
+        cvv = self.cvv_entry.get()
+
+        if card_number and name_on_card and cvv:
+            if len(str(card_number)) != 16:
+                messagebox.showinfo("Invalid Card Number", "Please enter a valid 16 digit card number")
+            elif type(name_on_card) is not str:
+                messagebox.showinfo("Invalid Name", "Please enter a valid name")
+            elif len(str(cvv)) != 3:
+                messagebox.showinfo("Invalid CVV", "Please enter a valid 3 digit CVV")
+            else:
+                messagebox.showinfo("Checkout", f"Payment Successful!")
+                self.shopping_cart.clear()
+
+                self.clear_payment_fields()
+                #for button in self.item_buttons:
+                 #   button.config(state=tk.NORMAL)
+        else:
+            messagebox.showerror("Error", "Please fill in all payment details.")
+
+
+
+    def clear_payment_fields(self):
+        self.card_entry.delete(0, tk.END)
+        self.name_entry.delete(0, tk.END)
+        self.cvv_entry.delete(0, tk.END)
+
+        self.shopping_cart.clear()
+
+
+
+
 root = tk.Tk()
-root.geometry("1700x750")
-shopping_list = ShoppingList(root)
+root.geometry("1920x1080")
+app = ShoppingGUI(root)
 root.mainloop()
+
+
