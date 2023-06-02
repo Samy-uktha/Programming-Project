@@ -9,9 +9,12 @@ class ShoppingGUI:
         self.master = master
         self.master.title("Shopping Program")
 
-       # self.bg_image = tk.PhotoImage(file="supermarket.png")
-       # self.bg_label = tk.Label(self.master, image=self.bg_image)
-       # self.bg_label.place(x=0,y=0, relwidth=1, relheight=1)
+
+        self.bg_image = tk.PhotoImage(file="supermarket.png")
+        self.bg_label = tk.Label(self.master, image=self.bg_image)
+        self.bg_label.place(x=0,y=0, relwidth=1, relheight=1)
+    
+
 
         self.login_page()
 
@@ -22,8 +25,11 @@ class ShoppingGUI:
         self.username_entry = tk.Entry(self.master, font="Arial 20", background="#FBFFDC")
         self.username_entry.place(x=630,y=150)
 
+
         self.password_label = tk.Label(self.master, text="Password:",font="Algerian 20", background="#98EECC")
         self.password_label.place(x=700,y=250)
+
+
 
         self.password_entry = tk.Entry(self.master, show="*",font="Arial 20",background="#FBFFDC")
         self.password_entry.place(x=630,y=300)
@@ -55,30 +61,61 @@ class ShoppingGUI:
                 {"name": "Fruits", "items": [
                     {"name": "Orange", "price": 1.50},
                     {"name": "Lemon", "price": 1.00},
-                    {"name": "Grapefruit", "price": 2.00}
+                    {"name": "Grapefruit", "price": 2.00},
+                    {"name": "watermelon","price": 50.00},
+                    {"name": "pomogranate","price": 20.00},
+                    {"name": "kiwi","price": 10.00},
+                    {"name": "Guava","price": 5.00},
+                    {"name": "Pear", "price": 20.00}
                 ]},
 
                 {"name": "Vegetables", "items": [
-                    {"name": "Mango", "price": 2.50},
-                    {"name": "Pineapple", "price": 2.00},
-                    {"name": "Banana", "price": 0.50}
+                    {"name": "Spinach", "price": 2.50},
+                    {"name": "Bottleguard", "price": 2.00},
+                    {"name": "Onion", "price": 0.50},
+                    {"name": "Chillis", "price": 1.50},
+                    {"name": "Tomatos", "price": 2.50},
+                    {"name": "LadysFinger", "price": 0.50},
+                    {"name": "pumpkin", "price": 5.50},
+                    {"name": "Califlower", "price": 1.50},
+                    {"name": "Brinjal", "price": 1.50},
+                    {"name": "Corn", "price": 0.50}
+                   
+                    
+                    
+                    
                 ]},
 
                 {"name": "Dairy", "items": [
                      {"name": "butter", "price": 2.50},
-                    {"name": "Milk", "price": 2.00},
-                    {"name": "Cheese", "price": 0.50},
-                    {"name": "gelato", "price": 2.00},
-                    {"name": "Curd", "price": 0.50},
-                    {"name": "sourcream", "price": 2.00}
+                     {"name": "Milk", "price": 2.00},
+                     {"name": "Cheese", "price": 0.50},
+
+                     {"name": "gelato", "price": 2.00},
+                     {"name": "Curd", "price": 0.50},
+                     {"name": "sourcream", "price": 2.00}
                     
+=======
+
                 ]},
 
                 {"name": "Bakery", "items": [
                     {"name": "Bread", "price": 2.50},
+
                     {"name": "garlicbread", "price": 2.00},
                     {"name": "pudding", "price": 0.50},
                     {"name": "custard", "price": 2.50}
+                    {"name": "Milk", "price": 2.00},
+                    {"name": "Cookies", "price": 0.50}
+                    {"name": "Biscuit", "price": 2.00},
+                    {"name": "Cupcake", "price": 1.00},
+                    {"name": "Baguette", "price": 2.00},
+                    {"name": "Muffins", "price": 1.00},
+                    {"name": "Donuts", "price": 2.00},
+                    {"name": "Swissroll", "price": 1.00},
+                    {"name": "Pie", "price": 2.00},
+                   
+
                 ]}
             ]},
             {"name": "Beverages", "subsections": [
@@ -289,4 +326,3 @@ root = tk.Tk()
 root.geometry("1920x1080")
 app = ShoppingGUI(root)
 root.mainloop()
-
