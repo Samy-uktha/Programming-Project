@@ -292,7 +292,7 @@ class ShoppingGUI:
         bill_window.title("Bill")
         bill_window.geometry("1920x1080")
 
-        self.bg_image = tk.PhotoImage(file="bill.png")
+        self.bg_image = tk.PhotoImage(file="cashier.png")
         self.bg_label = tk.Label(bill_window, image=self.bg_image)
         self.bg_label.place(x=0,y=0, relwidth=1, relheight=1)
 
