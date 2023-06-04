@@ -43,7 +43,7 @@ class ShoppingGUI:
         else:
             messagebox.showerror("Login Failed", "Invalid username or password")
 
-
+    shopping_cart = []
 # creating a toplevel window containing sections
     def open_section_window(self):
 
@@ -186,8 +186,6 @@ class ShoppingGUI:
                 ]}
             ]}
         ]
-
-        self.shopping_cart = []
 
         for section in self.sections:
             section_button = tk.Button(section_window,background="pink",text=section["name"],font="Arial 20", command=lambda section = section: [section_window.destroy(),self.open_subsection_window(section)])
