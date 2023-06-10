@@ -19,13 +19,15 @@ Samyuktha K - 102201003
 
 contribution:
 
+-Writing code for sign up function
+
 -Writing the code for opening the subsection window and the item window.
 
 -Writing the code for the item frame inside the item window with quantity and price label and remove button.
 
 -Writing functions for adding and removing buttons from cart.
 
--Writing code for the bill window with a table with data for name, quantity and price of items.
+-Writing code for the bill window with a table for cart data.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +35,7 @@ Saikam Varshitha - 102201006
 
 contribution:
 
--Writing the code for the login page with username and password entry boxes and login button, and function login.
+-Writing the code for the login page with labels, entry boxes and login button, and login function.
 
 -Creating a product catalog stored in multiple nested dictionaries and storing attributes of each product such as name and price.
 
@@ -41,17 +43,21 @@ contribution:
 
 -Writing README.md  file.
 
+-Modifying code according to PEP format
+
 --------------------------------------------------------------------------------------------------------------------------------------------------
              
 Ashwini Kannan K – 142201007
  
 contribution:
  
--Writing the code for the payment frame inside the bill window with entry boxes for card number, name and cvv and a checkout button.
+-Writing the code for the payment frame inside the bill window with labels, entry boxes, and checkout button.
 
--Writing the code for the checkout function and error handling by adding messageboxes with appropriate error messages for invalid inputs in payment fields.
+-Writing the code for the checkout function and error handling by adding messageboxes with appropriate error messages.
 
 -Writing the Report.
 
 -Writing README.md file.
+
+-Modifying code according to PEP format
 
