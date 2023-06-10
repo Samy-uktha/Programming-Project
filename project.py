@@ -506,11 +506,25 @@ class ShoppingGUI:
                     "Invalid Card Number", "Please enter a valid 16 digit card number"
                 )
                 self.open_bill_window()
+            elif type(card_number) is not int:
+                messagebox.showinfo(
+                    "Invalid Card Number", "Please enter a valid number"
+                )
+                self.open_bill_window()
             elif type(name_on_card) is not str:
-                messagebox.showinfo("Invalid Name", "Please enter a valid name")
+                messagebox.showinfo(
+                    "Invalid Name", "Please enter a valid name"
+                )
                 self.open_bill_window()
             elif len(str(cvv)) != 3:
-                messagebox.showinfo("Invalid CVV", "Please enter a valid 3 digit CVV")
+                messagebox.showinfo(
+                    "Invalid CVV", "Please enter a valid 3 digit CVV"
+                )
+                self.open_bill_window()
+            elif type(cvv) is not int:
+                messagebox.showinfo(
+                    "Invalid CVV", "Please enter a valid CVV"
+                )
                 self.open_bill_window()
             else:
                 messagebox.showinfo("Checkout", f"Payment Successful!")
