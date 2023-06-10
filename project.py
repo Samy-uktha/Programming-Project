@@ -505,12 +505,7 @@ class ShoppingGUI:
                 messagebox.showinfo(
                     "Invalid Card Number", "Please enter a valid 16 digit card number"
                 )
-                self.open_bill_window()
-            elif type(card_number) is not int:
-                messagebox.showinfo(
-                    "Invalid Card Number", "Please enter a valid number"
-                )
-                self.open_bill_window()
+                self.open_bill_window()            
             elif type(name_on_card) is not str:
                 messagebox.showinfo(
                     "Invalid Name", "Please enter a valid name"
@@ -521,15 +516,11 @@ class ShoppingGUI:
                     "Invalid CVV", "Please enter a valid 3 digit CVV"
                 )
                 self.open_bill_window()
-            elif type(cvv) is not int:
-                messagebox.showinfo(
-                    "Invalid CVV", "Please enter a valid CVV"
-                )
-                self.open_bill_window()
             else:
-                messagebox.showinfo("Checkout", f"Payment Successful!")
+                messagebox.showinfo(
+                    "Checkout", f"Payment Successful!"
+                )
                 self.shopping_cart.clear()
-
                 self.clear_payment_fields()
 
         else:
